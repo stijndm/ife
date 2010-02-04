@@ -1,4 +1,8 @@
 <?php 
+<<<<<<< HEAD
+=======
+// $Id$
+>>>>>>> creating HEAD for IFE
 
 /**
  * @file
@@ -15,7 +19,11 @@ function ife_menu() {
   $items = array();
 
   $items['admin/settings/ife'] = array(
+<<<<<<< HEAD
     'title' => 'Inline Form Errors',
+=======
+    'title' => t('Inline Form Errors'),
+>>>>>>> creating HEAD for IFE
     'description' => 'Administer which forms to use with field messages.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('ife_settings_form'),
@@ -23,8 +31,13 @@ function ife_menu() {
     'type' => MENU_NORMAL_ITEM,
     'file' => 'ife.settings.inc',
   );
+<<<<<<< HEAD
   $items['admin/settings/ife/%ife_form_id/delete'] = array(
     'title' => 'Delete form_id',
+=======
+  $items['admin/settings/ife/%form_id/delete'] = array(
+    'title' => t('Delete form_id'),
+>>>>>>> creating HEAD for IFE
     'page callback' => 'drupal_get_form',
     'page arguments' => array('ife_form_id_delete_form', 3),
     'access arguments' => array('administer inline form errors'),
@@ -68,11 +81,18 @@ function ife_help($path, $arg) {
 }
 
 /**
+<<<<<<< HEAD
  * Menu loader function to fetch a form id.
  */
 function ife_form_id_load($form_id) {
   $form_ids = ife_load_form_ids();
   
+=======
+ * Menu loader function to fetch a form id
+ */
+function form_id_load($form_id) {
+  $form_ids = ife_load_form_ids();
+>>>>>>> creating HEAD for IFE
   if (array_key_exists($form_id, $form_ids)) {
     return $form_ids[$form_id];
   }
@@ -93,7 +113,10 @@ function ife_theme() {
     'ife_form_element' => array(
       'arguments' => array('element' => NULL),
       'file' => 'ife.theme.inc',
+<<<<<<< HEAD
       'path' => drupal_get_path('module', 'ife'),
+=======
+>>>>>>> creating HEAD for IFE
       'template' => 'ife-form-element'
     ),
   );
@@ -103,6 +126,7 @@ function ife_theme() {
  *  Load all form ids from the data base
  */
 function ife_load_form_ids() {
+<<<<<<< HEAD
   $form_ids = cache_get('ife_form_ids', 'cache');
   $form_ids = $form_ids->cid;
   
@@ -115,6 +139,15 @@ function ife_load_form_ids() {
     }
     cache_set('ife_form_ids', $form_ids, 'cache');
   }
+=======
+  $result = db_query("SELECT form_id, field_types, status, display FROM {ife} ORDER BY form_id");
+  $form_ids = array();
+
+  while ($form_id = db_fetch_object($result)) {
+    $form_ids[$form_id->form_id] = $form_id;
+  }
+
+>>>>>>> creating HEAD for IFE
   return $form_ids;
 }
 
@@ -136,8 +169,12 @@ function ife_form_id_display($form_id) {
  * Implementation of hook_form_alter().
  */
 function ife_form_alter(&$form, $form_state, $form_id) {
+<<<<<<< HEAD
   $ife_options = ife_form_id_load($form_id);
 
+=======
+  $ife_options = form_id_load($form_id);
+>>>>>>> creating HEAD for IFE
   if ($ife_options->status) {
     $display = ife_form_id_display($ife_options);
     ife_filter_form($form, $display);
@@ -147,6 +184,7 @@ function ife_form_alter(&$form, $form_state, $form_id) {
       $form['#validate'][] = 'ife_form_validator';
     }
   }
+<<<<<<< HEAD
   
   //print form_ids 
   if (variable_get('ife_show_form_ids', 0)) {
@@ -158,6 +196,8 @@ function ife_form_alter(&$form, $form_state, $form_id) {
     );
   }
 
+=======
+>>>>>>> creating HEAD for IFE
 }
 
 /**
@@ -165,9 +205,14 @@ function ife_form_alter(&$form, $form_state, $form_id) {
  */
 function ife_form_validator($form, &$form_state) {
   $form_errors = form_get_errors();
+<<<<<<< HEAD
 
   if (!empty($form_errors)) {
     $message = t(variable_get('ife_general_message', 'Please correct all highlighted errors and try again.'));
+=======
+  if (!empty($form_errors)) {
+    $message = check_plain(t(variable_get('ife_general_message', 'Please correct all highlighted errors and try again.')));
+>>>>>>> creating HEAD for IFE
     drupal_set_message($message, 'error');
   }
 }
@@ -182,7 +227,10 @@ function ife_filter_form(&$form, $display) {
 
   foreach ($keys as $key) {
     $element_type = $form[$key]['#type'];
+<<<<<<< HEAD
     
+=======
+>>>>>>> creating HEAD for IFE
     if (in_array($element_type, $field_types)) {
       ife_alter_form_element($form[$key], $display);
     }
@@ -203,6 +251,7 @@ function ife_alter_form_element(&$element, $display) {
   $element['#display_type'] = $display;
 }
 
+<<<<<<< HEAD
 
 /**
  * Function to determine element errors 
@@ -231,10 +280,13 @@ function ife_element_get_error($element, $debug = FALSE) {
   
 }
 
+=======
+>>>>>>> creating HEAD for IFE
 /**
  * Helper function that identifies the different field types default in drupal
  */
 function ife_field_types() {
+<<<<<<< HEAD
   $expandable = ife_expandable_field_types();
   $extra = array('checkbox', 'file', 'password', 'radio', 'select', 'textarea', 'textfield', 'weight');
 
@@ -249,4 +301,7 @@ function ife_expandable_field_types() {
   $cck = array('date_combo', 'date_popup', 'date_repeat_rrule', 'email_textfield', 'filefield_widget', 'imagefield_widget', 'link', 'nodereference_select', 'nodereference_buttons', 'nodereference_autocomplete', 'number', 'optionwidgets_select', 'optionwidgets_buttons', 'optionwidgets_onoff', 'text_textfield', 'text_textarea', 'userreference_select', 'userreference_buttons', 'userreference_autocomplete', 'userreference_formatter_default', 'userreference_formatter_plain');
   
   return array_merge($core, $cck);
+=======
+  return array('checkbox', 'checkboxes', 'date', 'file', 'password', 'password_confirm', 'radio', 'radios', 'select', 'textarea', 'textfield', 'weight');
+>>>>>>> creating HEAD for IFE
 }

@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+;$Id$
+>>>>>>> creating HEAD for IFE
 name = "Inline Form Errors"
 description = "Put form error messages inline with the form elements"
 package = User interface

@@ -1,4 +1,8 @@
 <?php
+<<<<<<< HEAD
+=======
+// $Id$
+>>>>>>> creating HEAD for IFE
 
 /**
  * @file
@@ -14,12 +18,17 @@ function ife_settings_form($form_state) {
   $form = array();
 
   //general options
+<<<<<<< HEAD
   $form['general_settings'] = array(
+=======
+  $form['message_options'] = array(
+>>>>>>> creating HEAD for IFE
     '#type' => 'fieldset',
     '#title' => t('General options'),
     '#collapsed' => FALSE,
     '#collapsible' => FALSE
   );
+<<<<<<< HEAD
   
   $form['general_settings']['ife_show_form_ids'] = array(
     '#type' => 'checkbox',
@@ -29,6 +38,10 @@ function ife_settings_form($form_state) {
   );
 
   $form['general_settings']['ife_display'] = array(
+=======
+
+  $form['message_options']['ife_display'] = array(
+>>>>>>> creating HEAD for IFE
     '#type' => 'select',
     '#title' => t('Default display settings'),
     '#description' => t('What do you want to do with the original messages block at the top of the page?'),
@@ -38,11 +51,19 @@ function ife_settings_form($form_state) {
       t('Remove all messages (Show nothing)')),
     '#default_value' => variable_get('ife_display', 1)
   );
+<<<<<<< HEAD
   $form['general_settings']['ife_general_message'] = array(
     '#type' => 'textarea',
     '#title' => t('General error message'),
     '#description' => t('A general error message to display at the top of the page (default Drupal messages display). For use with the option "Show an alternate error message".'),
     '#default_value' => variable_get('ife_general_message', 'Please correct all highlighted errors and try again.'),
+=======
+  $form['message_options']['ife_general_message'] = array(
+    '#type' => 'textarea',
+    '#title' => t('General error message'),
+    '#description' => t('A general error message to display at the top of the page (default Drupal messages display). For use with the option "Show an alternate error message".'),
+    '#default_value' => check_plain(variable_get('ife_general_message', 'Please correct all highlighted errors and try again.')),
+>>>>>>> creating HEAD for IFE
     '#required' => TRUE
   );
 
@@ -132,7 +153,10 @@ function ife_settings_form_submit($form, &$form_state) {
   $values = $form_state['values'];
   
   //set general options
+<<<<<<< HEAD
   variable_set('ife_show_form_ids', $values['ife_show_form_ids']);
+=======
+>>>>>>> creating HEAD for IFE
   variable_set('ife_display', $values['ife_display']);
   variable_set('ife_general_message', $values['ife_general_message']);
   
@@ -154,7 +178,10 @@ function ife_settings_form_submit($form, &$form_state) {
   }
   
   drupal_set_message(t('The settings have been saved'));
+<<<<<<< HEAD
   cache_clear_all('ife_form_ids', 'cache');
+=======
+>>>>>>> creating HEAD for IFE
 }
 
 /**

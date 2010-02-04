@@ -1,4 +1,8 @@
 <?php
+<<<<<<< HEAD
+=======
+// $Id$
+>>>>>>> creating HEAD for IFE
 
 /**
  * @file
@@ -45,6 +49,7 @@ function theme_ife_settings_form_ids($form) {
  * Form element preprocess theming function
  */
 function template_preprocess_ife_form_element(&$vars) {
+<<<<<<< HEAD
   $element = $vars['element'];
 
   //theme the field
@@ -99,4 +104,36 @@ function template_preprocess_ife_form_element(&$vars) {
   
     $vars['error'] = TRUE; 
   }
+=======
+  //reset field type 
+  $vars['element']['#type'] = $vars['element']['#field_type'];
+  unset($vars['element']['#field_type']);
+  
+  $element = $vars['element'];
+  
+  //theme the field
+  $vars['field'] = theme($vars['element']['#type'], $element);
+  
+  //check for errors and settings
+  if ($error_message = form_get_error($element)) {
+    //get error id
+    $error_id = array_search($error_message, $_SESSION['messages']['error']);
+    
+    if ($error_id !== FALSE) {
+      if ($element['#display_type'] != 0) { 
+        unset($_SESSION['messages']['error'][$error_id]);
+        $_SESSION['messages']['error'] = array_values($_SESSION['messages']['error']);
+      }
+      
+      if (count($_SESSION['messages']['error']) <= 0) {
+        unset($_SESSION['messages']['error']);
+      }
+      
+      //set error to TRUE and set error message
+      $vars['error_message'] = $error_message;
+      $vars['error'] = TRUE;      
+    }
+  }
+  
+>>>>>>> creating HEAD for IFE
 }
