@@ -303,5 +303,15 @@ function ife_expandable_field_types() {
   return array_merge($core, $cck);
 =======
   return array('checkbox', 'checkboxes', 'date', 'file', 'password', 'password_confirm', 'radio', 'radios', 'select', 'textarea', 'textfield', 'weight');
+<<<<<<< HEAD
 >>>>>>> creating HEAD for IFE
+=======
+}
+
+/**
+ * Helper function that identifies the different expandable field types default in drupal
+ */
+function ife_expandable_field_types() {
+  return array('checkboxes', 'date', 'password_confirm', 'radios');
+>>>>>>> Fix for expandable form elements (radios, checkboxes, date, password_confirm)
 }

@@ -50,6 +50,7 @@ function theme_ife_settings_form_ids($form) {
  */
 function template_preprocess_ife_form_element(&$vars) {
 <<<<<<< HEAD
+<<<<<<< HEAD
   $element = $vars['element'];
 
   //theme the field
@@ -109,13 +110,24 @@ function template_preprocess_ife_form_element(&$vars) {
   $vars['element']['#type'] = $vars['element']['#field_type'];
   unset($vars['element']['#field_type']);
   
+=======
+>>>>>>> Fix for expandable form elements (radios, checkboxes, date, password_confirm)
   $element = $vars['element'];
   
   //theme the field
-  $vars['field'] = theme($vars['element']['#type'], $element);
+  //some strange things happening here with expandables vs singles
+  if (in_array($vars['element']['#field_type'], ife_expandable_field_types())) {
+    $element['#type'] = 'markup';
+    $vars['field'] = drupal_render($element);
+  }
   
+  else {
+    $vars['field'] = theme($element['#field_type'], $element);
+  }
+    
   //check for errors and settings
   if ($error_message = form_get_error($element)) {
+    dpm($error_message);
     //get error id
     $error_id = array_search($error_message, $_SESSION['messages']['error']);
     
