@@ -189,3 +189,10 @@ function ife_alter_form_element(&$element, $display) {
 function ife_field_types() {
   return array('checkbox', 'checkboxes', 'date', 'file', 'password', 'password_confirm', 'radio', 'radios', 'select', 'textarea', 'textfield', 'weight');
 }
+
+/**
+ * Helper function that identifies the different expandable field types default in drupal
+ */
+function ife_expandable_field_types() {
+  return array('checkboxes', 'date', 'password_confirm', 'radios');
+}
