@@ -5,5 +5,5 @@
 <?php print $field; ?>
 
 <?php if ($error_message): ?>
-  <div class='inline messages error'><?php print $error_message; ?></div>
+  <div class="messages error inline"><?php print $error_message; ?></div>
 <?php endif; ?>
