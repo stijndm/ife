@@ -199,9 +199,13 @@ function ife_settings_form_submit($form, &$form_state) {
   
   drupal_set_message(t('The settings have been saved'));
 <<<<<<< HEAD
+<<<<<<< HEAD
   cache_clear_all('ife_form_ids', 'cache');
 =======
 >>>>>>> creating HEAD for IFE
+=======
+  cache_clear_all('ife_form_ids', 'cache');
+>>>>>>> Added caching
 }
 
 /**
