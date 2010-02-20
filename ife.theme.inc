@@ -51,34 +51,53 @@ function template_preprocess_ife_form_element(&$vars) {
   //theme the field
   //some strange things happening here with expandables vs singles
   if (in_array($vars['element']['#field_type'], ife_expandable_field_types())) {
-    $element['#type'] = 'markup';
     $vars['field'] = drupal_render($element);
   }
-  
   else {
     $vars['field'] = theme($element['#field_type'], $element);
   }
-    
-  //check for errors and settings
-  if ($error_message = form_get_error($element)) {
-    dpm($error_message);
-    //get error id
-    $error_id = array_search($error_message, $_SESSION['messages']['error']);
-    
-    if ($error_id !== FALSE) {
-      if ($element['#display_type'] != 0) { 
-        unset($_SESSION['messages']['error'][$error_id]);
-        $_SESSION['messages']['error'] = array_values($_SESSION['messages']['error']);
-      }
-      
-      if (count($_SESSION['messages']['error']) <= 0) {
-        unset($_SESSION['messages']['error']);
-      }
-      
-      //set error to TRUE and set error message
-      $vars['error_message'] = $error_message;
-      $vars['error'] = TRUE;      
-    }
+  
+  $errors = array();
+  
+  //get main ellement error
+  $element_error = ife_element_get_error($element);
+  if (trim($element_error)) {
+    $errors[] = $element_error;
   }
   
+  //cck type support
+  if ($element['value']) {
+    $values = element_children($element['value']);
+    
+    //get main field error
+    $element['value']['#display_type'] = $element['#display_type'];
+    $element_error = ife_element_get_error($element['value']);
+    if (trim($element_error)) {
+      $errors[] = $element_error;
+    }
+    
+    //get sub errors
+    if (count($values)) {
+      foreach($values as $key)  {
+        //pass along display_type
+        $element['value'][$key]['#display_type'] = $element['#display_type'];
+        //get errors
+        $element_error = ife_element_get_error($element['value'][$key]);
+        if (trim($element_error)) {
+          $errors[] = $element_error;
+        }
+      }
+    }
+  }
+
+  if (count($errors)) {
+    if (count($errors) > 1) {
+      $vars['error_message'] = theme('item_list', $errors);
+    }
+    else {
+      $vars['error_message'] = $errors[0];
+    }
+  
+    $vars['error'] = TRUE; 
+  }
 }
