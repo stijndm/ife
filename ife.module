@@ -93,6 +93,7 @@ function ife_theme() {
     'ife_form_element' => array(
       'arguments' => array('element' => NULL),
       'file' => 'ife.theme.inc',
+      'path' => drupal_get_path('module', 'ife'),
       'template' => 'ife-form-element'
     ),
   );
