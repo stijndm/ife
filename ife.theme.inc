@@ -47,7 +47,7 @@ function theme_ife_settings_form_ids($form) {
  */
 function template_preprocess_ife_form_element(&$vars) {
   $element = $vars['element'];
-  
+
   //theme the field
   //some strange things happening here with expandables vs singles
   if (in_array($vars['element']['#field_type'], ife_expandable_field_types())) {

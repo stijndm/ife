@@ -177,6 +177,7 @@ function ife_filter_form(&$form, $display) {
 
   foreach ($keys as $key) {
     $element_type = $form[$key]['#type'];
+    
     if (in_array($element_type, $field_types)) {
       ife_alter_form_element($form[$key], $display);
     }
@@ -229,15 +230,18 @@ function ife_element_get_error($element, $debug = FALSE) {
  * Helper function that identifies the different field types default in drupal
  */
 function ife_field_types() {
-  $core = array('checkbox', 'checkboxes', 'date', 'file', 'password', 'password_confirm', 'radio', 'radios', 'select', 'textarea', 'textfield', 'weight');
-  $cck = array('date_combo', 'date_popup', 'date_repeat_rrule', 'filefield_widget', 'optionwidgets_select', 'text_textfield', 'text_textarea');
+  $expandable = ife_expandable_field_types();
+  $extra = array('checkbox', 'file', 'password', 'radio', 'select', 'textarea', 'textfield', 'weight');
 
-  return array_merge($core, $cck);
+  return array_merge($expandable, $extra);
 }
 
 /**
  * Helper function that identifies the different expandable field types default in drupal
  */
 function ife_expandable_field_types() {
-  return array('checkboxes', 'date', 'password_confirm', 'radios', 'date_combo', 'date_popup', 'date_repeat_rrule', 'filefield_widget', 'optionwidgets_select', 'text_textfield', 'text_textarea');
+  $core = array('checkboxes', 'date', 'password_confirm', 'radios');
+  $cck = array('date_combo', 'date_popup', 'date_repeat_rrule', 'email_textfield', 'filefield_widget', 'imagefield_widget', 'link', 'nodereference_select', 'nodereference_buttons', 'nodereference_autocomplete', 'number', 'optionwidgets_select', 'optionwidgets_buttons', 'optionwidgets_onoff', 'text_textfield', 'text_textarea', 'userreference_select', 'userreference_buttons', 'userreference_autocomplete', 'userreference_formatter_default', 'userreference_formatter_plain');
+  
+  return array_merge($core, $cck);
 }
