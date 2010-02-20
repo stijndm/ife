@@ -113,7 +113,7 @@ function template_preprocess_ife_form_element(&$vars) {
 =======
 >>>>>>> Fix for expandable form elements (radios, checkboxes, date, password_confirm)
   $element = $vars['element'];
-  
+
   //theme the field
   //some strange things happening here with expandables vs singles
   if (in_array($vars['element']['#field_type'], ife_expandable_field_types())) {
