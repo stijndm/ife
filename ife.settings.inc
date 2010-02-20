@@ -155,6 +155,7 @@ function ife_settings_form_submit($form, &$form_state) {
   }
   
   drupal_set_message(t('The settings have been saved'));
+  cache_clear_all('ife_form_ids', 'cache');
 }
 
 /**
