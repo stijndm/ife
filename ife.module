@@ -114,9 +114,13 @@ function ife_theme() {
       'arguments' => array('element' => NULL),
       'file' => 'ife.theme.inc',
 <<<<<<< HEAD
+<<<<<<< HEAD
       'path' => drupal_get_path('module', 'ife'),
 =======
 >>>>>>> creating HEAD for IFE
+=======
+      'path' => drupal_get_path('module', 'ife'),
+>>>>>>> Added path parameter to hook_theme
       'template' => 'ife-form-element'
     ),
   );
