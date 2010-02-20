@@ -142,6 +142,16 @@ function ife_form_alter(&$form, $form_state, $form_id) {
       $form['#validate'][] = 'ife_form_validator';
     }
   }
+  
+  //print form_ids 
+  if (variable_get('ife_show_form_ids', 0)) {
+    $form['ife_form_id'] = array(
+      '#type' => 'item',
+      '#value' => t('Form ID: ') . $form_id,
+      '#weight' => -1000,
+      '#access' => user_access('administer inline form errors')
+    );
+  }
 
 }
 
