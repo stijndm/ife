@@ -178,7 +178,11 @@ function ife_form_alter(&$form, $form_state, $form_id) {
 
 =======
   $ife_options = form_id_load($form_id);
+<<<<<<< HEAD
 >>>>>>> creating HEAD for IFE
+=======
+
+>>>>>>> Initial cck support
   if ($ife_options->status) {
     $display = ife_form_id_display($ife_options);
     ife_filter_form($form, $display);
@@ -188,6 +192,7 @@ function ife_form_alter(&$form, $form_state, $form_id) {
       $form['#validate'][] = 'ife_form_validator';
     }
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
   
   //print form_ids 
@@ -202,6 +207,9 @@ function ife_form_alter(&$form, $form_state, $form_id) {
 
 =======
 >>>>>>> creating HEAD for IFE
+=======
+
+>>>>>>> Initial cck support
 }
 
 /**
@@ -210,10 +218,14 @@ function ife_form_alter(&$form, $form_state, $form_id) {
 function ife_form_validator($form, &$form_state) {
   $form_errors = form_get_errors();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   if (!empty($form_errors)) {
     $message = t(variable_get('ife_general_message', 'Please correct all highlighted errors and try again.'));
 =======
+=======
+
+>>>>>>> Initial cck support
   if (!empty($form_errors)) {
     $message = check_plain(t(variable_get('ife_general_message', 'Please correct all highlighted errors and try again.')));
 >>>>>>> creating HEAD for IFE
@@ -256,6 +268,9 @@ function ife_alter_form_element(&$element, $display) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Initial cck support
 
 /**
  * Function to determine element errors 
@@ -284,12 +299,16 @@ function ife_element_get_error($element, $debug = FALSE) {
   
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> creating HEAD for IFE
+=======
+>>>>>>> Initial cck support
 /**
  * Helper function that identifies the different field types default in drupal
  */
 function ife_field_types() {
+<<<<<<< HEAD
 <<<<<<< HEAD
   $expandable = ife_expandable_field_types();
   $extra = array('checkbox', 'file', 'password', 'radio', 'select', 'textarea', 'textfield', 'weight');
@@ -310,12 +329,22 @@ function ife_expandable_field_types() {
 <<<<<<< HEAD
 >>>>>>> creating HEAD for IFE
 =======
+=======
+  $core = array('checkbox', 'checkboxes', 'date', 'file', 'password', 'password_confirm', 'radio', 'radios', 'select', 'textarea', 'textfield', 'weight');
+  $cck = array('date_combo', 'date_popup', 'date_repeat_rrule', 'filefield_widget', 'optionwidgets_select', 'text_textfield', 'text_textarea');
+
+  return array_merge($core, $cck);
+>>>>>>> Initial cck support
 }
 
 /**
  * Helper function that identifies the different expandable field types default in drupal
  */
 function ife_expandable_field_types() {
+<<<<<<< HEAD
   return array('checkboxes', 'date', 'password_confirm', 'radios');
 >>>>>>> Fix for expandable form elements (radios, checkboxes, date, password_confirm)
+=======
+  return array('checkboxes', 'date', 'password_confirm', 'radios', 'date_combo', 'date_popup', 'date_repeat_rrule', 'filefield_widget', 'optionwidgets_select', 'text_textfield', 'text_textarea');
+>>>>>>> Initial cck support
 }
