@@ -194,6 +194,9 @@ function ife_form_alter(&$form, $form_state, $form_id) {
   }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Add option to display form_ids (with administer permissions) when viewing a form.
   
   //print form_ids 
   if (variable_get('ife_show_form_ids', 0)) {
@@ -204,10 +207,13 @@ function ife_form_alter(&$form, $form_state, $form_id) {
       '#access' => user_access('administer inline form errors')
     );
   }
+<<<<<<< HEAD
 
 =======
 >>>>>>> creating HEAD for IFE
 =======
+=======
+>>>>>>> Add option to display form_ids (with administer permissions) when viewing a form.
 
 >>>>>>> Initial cck support
 }

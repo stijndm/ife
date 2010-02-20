@@ -19,16 +19,23 @@ function ife_settings_form($form_state) {
 
   //general options
 <<<<<<< HEAD
+<<<<<<< HEAD
   $form['general_settings'] = array(
 =======
   $form['message_options'] = array(
 >>>>>>> creating HEAD for IFE
+=======
+  $form['general_settings'] = array(
+>>>>>>> Add option to display form_ids (with administer permissions) when viewing a form.
     '#type' => 'fieldset',
     '#title' => t('General options'),
     '#collapsed' => FALSE,
     '#collapsible' => FALSE
   );
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Add option to display form_ids (with administer permissions) when viewing a form.
   
   $form['general_settings']['ife_show_form_ids'] = array(
     '#type' => 'checkbox',
@@ -36,12 +43,17 @@ function ife_settings_form($form_state) {
     '#description' => t('This option will print the form_id on the form for users with the administer inline form errors permissions'),
     '#default_value' => variable_get('ife_show_form_ids', 0)
   );
+<<<<<<< HEAD
 
   $form['general_settings']['ife_display'] = array(
 =======
 
   $form['message_options']['ife_display'] = array(
 >>>>>>> creating HEAD for IFE
+=======
+
+  $form['general_settings']['ife_display'] = array(
+>>>>>>> Add option to display form_ids (with administer permissions) when viewing a form.
     '#type' => 'select',
     '#title' => t('Default display settings'),
     '#description' => t('What do you want to do with the original messages block at the top of the page?'),
@@ -52,6 +64,7 @@ function ife_settings_form($form_state) {
     '#default_value' => variable_get('ife_display', 1)
   );
 <<<<<<< HEAD
+<<<<<<< HEAD
   $form['general_settings']['ife_general_message'] = array(
     '#type' => 'textarea',
     '#title' => t('General error message'),
@@ -59,6 +72,9 @@ function ife_settings_form($form_state) {
     '#default_value' => variable_get('ife_general_message', 'Please correct all highlighted errors and try again.'),
 =======
   $form['message_options']['ife_general_message'] = array(
+=======
+  $form['general_settings']['ife_general_message'] = array(
+>>>>>>> Add option to display form_ids (with administer permissions) when viewing a form.
     '#type' => 'textarea',
     '#title' => t('General error message'),
     '#description' => t('A general error message to display at the top of the page (default Drupal messages display). For use with the option "Show an alternate error message".'),
@@ -154,9 +170,13 @@ function ife_settings_form_submit($form, &$form_state) {
   
   //set general options
 <<<<<<< HEAD
+<<<<<<< HEAD
   variable_set('ife_show_form_ids', $values['ife_show_form_ids']);
 =======
 >>>>>>> creating HEAD for IFE
+=======
+  variable_set('ife_show_form_ids', $values['ife_show_form_ids']);
+>>>>>>> Add option to display form_ids (with administer permissions) when viewing a form.
   variable_set('ife_display', $values['ife_display']);
   variable_set('ife_general_message', $values['ife_general_message']);
   
