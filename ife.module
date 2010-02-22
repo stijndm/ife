@@ -104,8 +104,15 @@ function ife_theme() {
  *  Load all form ids from the data base
  */
 function ife_load_form_ids() {
-  $form_ids = cache_get('ife_form_ids', 'cache');
-  $form_ids = $form_ids->cid;
+  static $ife_form_ids;
+  
+  if ($ife_form_ids) {
+    $form_ids = $ife_form_ids;
+  }
+  else {
+    $form_ids = cache_get('ife_form_ids', 'cache');
+    $form_ids = $form_ids->data;
+  }
   
   if (empty($form_ids)) {
     $result = db_query("SELECT form_id, field_types, status, display FROM {ife} ORDER BY form_id");
@@ -116,7 +123,9 @@ function ife_load_form_ids() {
     }
     cache_set('ife_form_ids', $form_ids, 'cache');
   }
-  return $form_ids;
+  
+  $ife_form_ids = $form_ids;
+  return $ife_form_ids;
 }
 
 /**
