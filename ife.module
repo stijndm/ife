@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 <?php 
 <<<<<<< HEAD
 =======
+=======
+<?php
+>>>>>>> Coder review fixes. Mostly removed trailing spaces.
 // $Id$
 >>>>>>> creating HEAD for IFE
 
@@ -71,17 +75,17 @@ function ife_help($path, $arg) {
   switch ($path) {
     case 'admin/help#ife':
       $output = '<p>'. t('IFE or Inline Form Errors allows you to place form submission error inline with the form elements. Three options are provided for setting your inline error behaviour. You can configure the default behaviour or override the behaviour on a per form basis. You can add as many forms as you like.') .'</p>';
-      
+
       $output .= '<p>'. t('IFE provides three behaviours for the configured forms') .'</p>';
-      
+
       $output .= '<ul>';
       $output .= '<li>'. t('<strong>Leave the messages in place</strong>, this option will copy the error messages and place them inline. The original error messages set by Drupal will remain in place') .'</li>';
       $output .= '<li>'. t("<strong>Show an alternate message</strong>, this option will replace the original messages with a generic error message such as 'Please correct all errors.'. This message can be set in the IFE configuration page. The original error messages are placed inline with the form elements") .'</li>';
       $output .= '<li>'. t('<strong>Remove all messages</strong>, this option will remove all error messages and place them inline with the form element') .'</li>';
       $output .= '</ul>';
-      
+
       $output .= '<p>'. t('In all cases only the messages related to the form will be touched. All other messages will remain in tact.') .'</p>';
-      
+
       return $output;
 
     case 'admin/settings/ife':
@@ -96,6 +100,7 @@ function ife_help($path, $arg) {
  */
 function ife_form_id_load($form_id) {
   $form_ids = ife_load_form_ids();
+<<<<<<< HEAD
   
 =======
  * Menu loader function to fetch a form id
@@ -110,6 +115,9 @@ function ife_form_id_load($form_id) {
 =======
   
 >>>>>>> Added caching
+=======
+
+>>>>>>> Coder review fixes. Mostly removed trailing spaces.
   if (array_key_exists($form_id, $form_ids)) {
     return $form_ids[$form_id];
   }
@@ -156,7 +164,7 @@ function ife_load_form_ids() {
   $form_ids = $form_ids->cid;
 =======
   static $ife_form_ids;
-  
+
   if ($ife_form_ids) {
     $form_ids = $ife_form_ids;
   }
@@ -164,18 +172,23 @@ function ife_load_form_ids() {
     $form_ids = cache_get('ife_form_ids', 'cache');
     $form_ids = $form_ids->data;
   }
+<<<<<<< HEAD
 >>>>>>> Fixed caching bug + added static caching
   
+=======
+
+>>>>>>> Coder review fixes. Mostly removed trailing spaces.
   if (empty($form_ids)) {
     $result = db_query("SELECT form_id, field_types, status, display FROM {ife} ORDER BY form_id");
     $form_ids = array();
-  
+
     while ($form_id = db_fetch_object($result)) {
       $form_ids[$form_id->form_id] = $form_id;
     }
     cache_set('ife_form_ids', $form_ids, 'cache');
 <<<<<<< HEAD
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   $result = db_query("SELECT form_id, field_types, status, display FROM {ife} ORDER BY form_id");
@@ -192,6 +205,9 @@ function ife_load_form_ids() {
   return $form_ids;
 =======
   
+=======
+
+>>>>>>> Coder review fixes. Mostly removed trailing spaces.
   $ife_form_ids = $form_ids;
   return $ife_form_ids;
 >>>>>>> Fixed caching bug + added static caching
@@ -241,14 +257,19 @@ function ife_form_alter(&$form, $form_state, $form_id) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Add option to display form_ids (with administer permissions) when viewing a form.
   
   //print form_ids 
+=======
+
+  //print form_ids
+>>>>>>> Coder review fixes. Mostly removed trailing spaces.
   if (variable_get('ife_show_form_ids', 0)) {
     $form['ife_form_id'] = array(
       '#type' => 'item',
-      '#value' => t('Form ID: ') . $form_id,
+      '#value' => t('Form ID: @form_id', array('@form_id' => $form_id)),
       '#weight' => -1000,
       '#access' => user_access('administer inline form errors')
     );
@@ -297,12 +318,16 @@ function ife_filter_form(&$form, $display) {
     $element_type = $form[$key]['#type'];
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     
 =======
 >>>>>>> creating HEAD for IFE
 =======
     
 >>>>>>> Added field types support for user reference, node reference, link and email.
+=======
+
+>>>>>>> Coder review fixes. Mostly removed trailing spaces.
     if (in_array($element_type, $field_types)) {
       ife_alter_form_element($form[$key], $display);
     }
@@ -329,30 +354,30 @@ function ife_alter_form_element(&$element, $display) {
 >>>>>>> Initial cck support
 
 /**
- * Function to determine element errors 
+ * Function to determine element errors
  */
 function ife_element_get_error($element, $debug = FALSE) {
-  
+
   //check for errors and settings
   if ($error_message = form_get_error($element)) {
     //get error id
     $error_id = array_search($error_message, $_SESSION['messages']['error']);
 
     if ($error_id !== FALSE) {
-      if ($element['#display_type'] != 0) { 
+      if ($element['#display_type'] != 0) {
         unset($_SESSION['messages']['error'][$error_id]);
         $_SESSION['messages']['error'] = array_values($_SESSION['messages']['error']);
       }
-      
+
       if (count($_SESSION['messages']['error']) <= 0) {
         unset($_SESSION['messages']['error']);
       }
-      
+
       //return error message
-      return $error_message;           
+      return $error_message;
     }
   }
-  
+
 }
 
 <<<<<<< HEAD
@@ -414,7 +439,7 @@ function ife_expandable_field_types() {
 =======
   $core = array('checkboxes', 'date', 'password_confirm', 'radios');
   $cck = array('date_combo', 'date_popup', 'date_repeat_rrule', 'email_textfield', 'filefield_widget', 'imagefield_widget', 'link', 'nodereference_select', 'nodereference_buttons', 'nodereference_autocomplete', 'number', 'optionwidgets_select', 'optionwidgets_buttons', 'optionwidgets_onoff', 'text_textfield', 'text_textarea', 'userreference_select', 'userreference_buttons', 'userreference_autocomplete', 'userreference_formatter_default', 'userreference_formatter_plain');
-  
+
   return array_merge($core, $cck);
 >>>>>>> Added field types support for user reference, node reference, link and email.
 }
