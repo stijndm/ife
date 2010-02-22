@@ -73,6 +73,7 @@ function ife_install() {
  */
 function ife_uninstall() {
   drupal_uninstall_schema('ife');
+  variable_del('ife_show_form_ids');
   variable_del('ife_display');
   variable_del('ife_general_message');
 }
