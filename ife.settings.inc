@@ -116,7 +116,7 @@ function ife_settings_form_validate($form, &$form_state) {
   
   //check if form_id already exists
   $new_form_id = $values['form_ids']['new_form_id']['form_id'];
-  if ($new_form_id && form_id_load($new_form_id)) {
+  if ($new_form_id && ife_form_id_load($new_form_id)) {
     form_set_error('form_ids][new_form_id][form_id', t('The form %form_id has already been added.', array('%form_id' => $new_form_id)));
   }
   
