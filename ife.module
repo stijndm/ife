@@ -177,7 +177,7 @@ function ife_form_validator($form, &$form_state) {
   $form_errors = form_get_errors();
 
   if (!empty($form_errors)) {
-    $message = check_plain(t(variable_get('ife_general_message', 'Please correct all highlighted errors and try again.')));
+    $message = t(variable_get('ife_general_message', 'Please correct all highlighted errors and try again.'));
     drupal_set_message($message, 'error');
   }
 }
