@@ -43,7 +43,7 @@ function ife_settings_form($form_state) {
     '#type' => 'textarea',
     '#title' => t('General error message'),
     '#description' => t('A general error message to display at the top of the page (default Drupal messages display). For use with the option "Show an alternate error message".'),
-    '#default_value' => check_plain(variable_get('ife_general_message', 'Please correct all highlighted errors and try again.')),
+    '#default_value' => variable_get('ife_general_message', 'Please correct all highlighted errors and try again.'),
     '#required' => TRUE
   );
 
