@@ -294,6 +294,7 @@ function ife_form_validator($form, &$form_state) {
 <<<<<<< HEAD
 
   if (!empty($form_errors)) {
+<<<<<<< HEAD
     $message = t(variable_get('ife_general_message', 'Please correct all highlighted errors and try again.'));
 =======
 =======
@@ -302,6 +303,9 @@ function ife_form_validator($form, &$form_state) {
   if (!empty($form_errors)) {
     $message = check_plain(t(variable_get('ife_general_message', 'Please correct all highlighted errors and try again.')));
 >>>>>>> creating HEAD for IFE
+=======
+    $message = filter_xss_admin(variable_get('ife_general_message', 'Please correct all highlighted errors and try again.'));
+>>>>>>> Fixed by boobaa: security issue introduced by previous commit related to issue #728942
     drupal_set_message($message, 'error');
   }
 }
