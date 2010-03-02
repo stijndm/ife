@@ -21,7 +21,7 @@ function ife_settings_form($form_state) {
     '#collapsed' => FALSE,
     '#collapsible' => FALSE
   );
-  
+
   $form['general_settings']['ife_show_form_ids'] = array(
     '#type' => 'checkbox',
     '#title' => t('Show form_ids on form'),
@@ -57,7 +57,7 @@ function ife_settings_form($form_state) {
     '#tree' => TRUE,
     '#theme' => 'ife_settings_form_ids',
   );
-  
+
   $form_ids = ife_load_form_ids();
   foreach ($form_ids as $form_id) {
     $form['form_ids'][$form_id->form_id] = array();
@@ -72,13 +72,13 @@ function ife_settings_form($form_state) {
       '#type' => 'select',
       '#options' => array(
         '-1' => t('<default>'),
-        t('Leave the messages in place'), 
-        t('Show an alternate error message'), 
+        t('Leave the messages in place'),
+        t('Show an alternate error message'),
         t('Remove all messages')),
       '#default_value' => $form_id->display
     );
   }
-  
+
   $form['form_ids']['new_form_id']['form_id'] = array(
     '#type' => 'textfield',
     '#size' => 20
@@ -93,18 +93,18 @@ function ife_settings_form($form_state) {
     '#type' => 'select',
     '#options' => array(
       '-1' => t('<default>'),
-      t('Leave the messages in place'), 
-      t('Show an alternate error messages'), 
+      t('Leave the messages in place'),
+      t('Show an alternate error messages'),
       t('Remove all message')),
     '#default_value' => -1
   );
-    
+
   //submit button
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Save configuration'),
   );
-  
+
   return $form;
 }
 
@@ -113,13 +113,13 @@ function ife_settings_form($form_state) {
  */
 function ife_settings_form_validate($form, &$form_state) {
   $values = $form_state['values'];
-  
+
   //check if form_id already exists
   $new_form_id = $values['form_ids']['new_form_id']['form_id'];
-  if ($new_form_id && form_id_load($new_form_id)) {
+  if ($new_form_id && ife_form_id_load($new_form_id)) {
     form_set_error('form_ids][new_form_id][form_id', t('The form %form_id has already been added.', array('%form_id' => $new_form_id)));
   }
-  
+
   //check if the form_id is valid
   if (!preg_match('/^[a-z0-9_]*$/', $new_form_id)) {
     form_set_error('form_ids][new_form_id][form_id', t('The form_id %form_id is invalid.', array('%form_id' => $new_form_id)));
@@ -131,29 +131,29 @@ function ife_settings_form_validate($form, &$form_state) {
  */
 function ife_settings_form_submit($form, &$form_state) {
   $values = $form_state['values'];
-  
+
   //set general options
   variable_set('ife_show_form_ids', $values['ife_show_form_ids']);
   variable_set('ife_display', $values['ife_display']);
   variable_set('ife_general_message', $values['ife_general_message']);
-  
+
   //write form_ids to the database
   $form_ids = $values['form_ids'];
   array_pop($form_ids);
-  
+
   foreach ($form_ids as $form_id => $options) {
     $object = $options;
     $object['form_id'] = $form_id;
-    
+
     drupal_write_record('ife', $object, array('form_id'));
   }
-  
+
   //create new form_id
   if ($values['form_ids']['new_form_id']['form_id']) {
     drupal_write_record('ife', $values['form_ids']['new_form_id']);
     drupal_set_message(t('The form %form_id has been added.', array('%form_id' => $values['form_ids']['new_form_id']['form_id'])));
   }
-  
+
   drupal_set_message(t('The settings have been saved'));
   cache_clear_all('ife_form_ids', 'cache');
 }
@@ -164,12 +164,12 @@ function ife_settings_form_submit($form, &$form_state) {
 function ife_form_id_delete_form($form_state, $form_id) {
   $form = array();
   $form['fid'] = array('#value' => $form_id->form_id, '#type' => 'hidden');
-  
+
   return confirm_form(
-    $form, 
-    t('Are your sure you want to delete the form %form_id', array('%form_id' => $form_id->form_id)), 
-    'admin/settings/ife', 
-    t('This action cannot be undone.'), 
+    $form,
+    t('Are your sure you want to delete the form %form_id', array('%form_id' => $form_id->form_id)),
+    'admin/settings/ife',
+    t('This action cannot be undone.'),
     t('Delete'));
 }
 

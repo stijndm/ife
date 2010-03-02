@@ -13,7 +13,7 @@
  */
 function ife_schema() {
   $schema = array();
-  
+
   // Table for positions and types of the challenges.
   $schema['ife'] = array(
     'description' => 'This table describes which form should be used with field messages and which field types should be converted.',
@@ -45,7 +45,7 @@ function ife_schema() {
     ),
     'primary key' => array('form_id'),
   );
-  
+
   return $schema;
 }
 
@@ -56,7 +56,7 @@ function ife_schema() {
 function ife_install() {
   drupal_install_schema('ife');
   db_query("UPDATE {system} SET weight = 1000 WHERE name = 'ife'");
-  
+
   // insert some defaults
   $form_ids = array('comment_form', 'contact_mail_user', 'contact_mail_page',
     'user_register', 'user_pass', 'user_login', 'user_login_block', 'forum_node_form');
@@ -70,6 +70,7 @@ function ife_install() {
  */
 function ife_uninstall() {
   drupal_uninstall_schema('ife');
+  variable_del('ife_show_form_ids');
   variable_del('ife_display');
   variable_del('ife_general_message');
 }
