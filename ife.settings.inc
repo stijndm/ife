@@ -144,6 +144,10 @@ function ife_settings_form($form_state) {
     '#type' => 'submit',
     '#value' => t('Save configuration'),
   );
+  
+  if (module_exists('i18n') && $variables = variable_get('i18n_variables', 0)) {
+    i18n_form_alter_settings($form, $variables);
+  }
 
   return $form;
 }
