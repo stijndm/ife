@@ -184,5 +184,7 @@ function ife_form_id_delete_form_submit($form, &$form_state) {
   $form_id = $form_state['values']['fid'];
   db_query("DELETE FROM {ife} WHERE form_id = '%s'", $form_id);
   drupal_set_message(t('The form %form_id has been deleted.', array('%form_id' => $form_id)));
+  
+  cache_clear_all('ife_form_ids', 'cache');
   drupal_goto('admin/settings/ife');
 }
