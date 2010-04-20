@@ -29,6 +29,7 @@
 <?php if ($error_message): ?>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <div class="messages error inline"><?php print $error_message; ?></div>
 <<<<<<< HEAD
 =======
@@ -41,3 +42,7 @@
 =======
 <?php endif;
 >>>>>>> Coder review fixes. Mostly removed trailing spaces.
+=======
+  <div class="messages error messages-inline"><?php print $error_message; ?></div>
+<?php endif;
+>>>>>>> Changed by swentel: Change default class names.
