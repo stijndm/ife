@@ -17,7 +17,7 @@ Install as usual, http://drupal.org/node/70151
 Usage:
 -----
 
-On the settings page (see step 3 above) you can configure which forms are enabled with inline form errors. In Drupal, every form has a unique ID. This ID must be used to target a form. You can enter a new form id at the bottom of the settings page. By default all the forms will have a general error message and general display setting. 
+On the settings page (see step 3 above) you can configure which forms are enabled with inline form errors. In Drupal, every form has a unique ID. This ID must be used to target a form. You can enter a new form id at the bottom of the settings page. By default all the forms will have a general error message and general display setting.
 
 FAQ:
 ---
@@ -38,13 +38,3 @@ MAINTAINERS:
 
 This module is maintained by stijndm (http://drupal.org/user/201482)
 Development is sponsored by nascom.be and villaviscom.be
-
-
-
-
-
-
-
-
-
-
