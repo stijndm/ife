@@ -2,4 +2,9 @@
 name = "Inline Form Errors"
 description = "Put form error messages inline with the form elements"
 package = User interface
-core = 6.x
+core = 7.x
+
+files[] = ife.install
+files[] = ife.module
+files[] = ife.settings.inc
+files[] = ife.theme.inc
