@@ -1,8 +1,4 @@
 <?php
-<<<<<<< HEAD
-=======
-// $Id$
->>>>>>> creating HEAD for IFE
 
 /**
  * @file
@@ -49,8 +45,6 @@ function theme_ife_settings_form_ids($form) {
  * Form element preprocess theming function
  */
 function template_preprocess_ife_form_element(&$vars) {
-<<<<<<< HEAD
-<<<<<<< HEAD
   $element = $vars['element'];
 
   //theme the field
@@ -105,69 +99,4 @@ function template_preprocess_ife_form_element(&$vars) {
 
     $vars['error'] = TRUE;
   }
-=======
-  //reset field type 
-  $vars['element']['#type'] = $vars['element']['#field_type'];
-  unset($vars['element']['#field_type']);
-  
-=======
->>>>>>> Fix for expandable form elements (radios, checkboxes, date, password_confirm)
-  $element = $vars['element'];
-
-  //theme the field
-  //some strange things happening here with expandables vs singles
-  if (in_array($vars['element']['#field_type'], ife_expandable_field_types())) {
-    $vars['field'] = drupal_render($element);
-  }
-  else {
-    $vars['field'] = theme($element['#field_type'], $element);
-  }
-  
-  $errors = array();
-  
-  //get main ellement error
-  $element_error = ife_element_get_error($element);
-  if (trim($element_error)) {
-    $errors[] = $element_error;
-  }
-  
-  //cck type support
-  if ($element['value']) {
-    $values = element_children($element['value']);
-    
-    //get main field error
-    $element['value']['#display_type'] = $element['#display_type'];
-    $element_error = ife_element_get_error($element['value']);
-    if (trim($element_error)) {
-      $errors[] = $element_error;
-    }
-    
-    //get sub errors
-    if (count($values)) {
-      foreach($values as $key)  {
-        //pass along display_type
-        $element['value'][$key]['#display_type'] = $element['#display_type'];
-        //get errors
-        $element_error = ife_element_get_error($element['value'][$key]);
-        if (trim($element_error)) {
-          $errors[] = $element_error;
-        }
-      }
-    }
-  }
-
-  if (count($errors)) {
-    if (count($errors) > 1) {
-      $vars['error_message'] = theme('item_list', $errors);
-    }
-    else {
-      $vars['error_message'] = $errors[0];
-    }
-  
-<<<<<<< HEAD
->>>>>>> creating HEAD for IFE
-=======
-    $vars['error'] = TRUE; 
-  }
->>>>>>> Initial cck support
 }
